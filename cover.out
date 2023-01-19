@@ -1,9 +1,9 @@
 mode: set
-hikobend/hikobend/api_test/main.go:13.27,15.38 2 1
-hikobend/hikobend/api_test/main.go:20.2,20.37 1 1
-hikobend/hikobend/api_test/main.go:29.2,29.10 1 1
-hikobend/hikobend/api_test/main.go:15.38,19.3 1 1
-hikobend/hikobend/api_test/main.go:20.37,22.40 2 1
-hikobend/hikobend/api_test/main.go:27.3,27.41 1 1
-hikobend/hikobend/api_test/main.go:22.40,26.4 2 0
-hikobend/hikobend/api_test/main.go:31.13,33.2 1 0
+hikobend/hikobend/api_test/main.go:16.27,21.2 4 1
+hikobend/hikobend/api_test/main.go:22.13,24.2 1 0
+hikobend/hikobend/api_test/main.go:26.26,28.2 1 1
+hikobend/hikobend/api_test/main.go:30.29,32.16 2 1
+hikobend/hikobend/api_test/main.go:35.2,38.39 3 1
+hikobend/hikobend/api_test/main.go:42.2,46.21 3 1
+hikobend/hikobend/api_test/main.go:32.16,34.3 1 0
+hikobend/hikobend/api_test/main.go:38.39,41.3 2 1
