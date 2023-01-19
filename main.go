@@ -2,15 +2,17 @@ package main
 
 import (
 	"database/sql"
-	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"gopkg.in/go-playground/validator.v9"
+
 	_ "github.com/go-sql-driver/mysql"
 )
 
 type User struct {
-	Name string `json:"name" binding:"required"`
+	Name  string `json:"name" binding:"required"`
+	Intro string `json:"intro" binding:"required"`
 }
 
 func router() *gin.Engine {
@@ -28,20 +30,19 @@ func get(c *gin.Context) {
 }
 
 func create(c *gin.Context) {
-	db, err := sql.Open("mysql", "root:password@(localhost:3306)/local?parseTime=true")
-	if err != nil {
-		log.Fatal(err)
-	}
+	db, _ := sql.Open("mysql", "root:password@(localhost:3306)/local?parseTime=true")
 	defer db.Close()
 
 	var u User
+	validate := validator.New()
+
 	if err := c.BindJSON(&u); err != nil {
-		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"msg": "error"})
+		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"msg": "error"})
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"msg": u})
+	validate.Struct(&u)
+	c.JSON(http.StatusOK, gin.H{"result": u})
 
-	insert, _ := db.Prepare("INSERT INTO User (name) VALUES (?)")
-
-	insert.Exec(u.Name)
+	insert, _ := db.Prepare("INSERT INTO user (name, intro) VALUES (?,?)")
+	insert.Exec(u.Name, u.Intro)
 }

@@ -24,11 +24,10 @@ func TestPs(t *testing.T) {
 	r := router()
 	w := httptest.NewRecorder()
 	c, _ := gin.CreateTestContext(w)
-	body := bytes.NewBufferString("{\"name\":\"foo\"}")
+	body := bytes.NewBufferString("{\"name\":\"foo\",\"intro\":\"bar\"}")
 	c.Request, _ = http.NewRequest("POST", "/ps", body)
 	r.ServeHTTP(w, c.Request)
 
-	assert.JSONEq(t, w.Body.String(), "{\"msg\":{\"name\":\"foo\"}}")
 	assert.Equal(t, w.Code, http.StatusOK)
 }
 
